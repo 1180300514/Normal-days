@@ -1,5 +1,0 @@
-注意操作时候的branch
-
-git追踪的是文件，只添加一个文件夹对于git来说没有区别，因此只添加一个文件夹就更新会发现线上库一点变化也没有
-
-github的仓库改名且本地仓库也改名之后，想要像原来一样push操作是不行的，因为本地git remote -v之后发现github本地的repository地址没变，而github库的URL因为改名发生了变化，因此需要git remote set-url origin <repo-url>命令把本地库的远程地址改成新的，之后就好了（注意，不能用remote set origin<repo-url>，会报错error: remote origin already exists.)
