@@ -1,0 +1,73 @@
+#include <iostream>
+
+class Shape
+{
+protected:
+    double width, height;
+
+public:
+    virtual double area() const;
+    void getwid(double w);
+    void gethei(double h);
+    virtual ~Shape();
+};
+
+Shape::~Shape()
+{
+    std::cout << "Object deleted" << std::endl;
+}
+double Shape::area() const
+{
+    return width * height;
+}
+
+void Shape::gethei(double h)
+{
+    height = h;
+}
+
+void Shape::getwid(double w)
+{
+    width = w;
+}
+
+class Rectangle : public Shape
+{
+
+public:
+    double area() const
+    {
+        return width * height;
+    }
+};
+
+class triangle : public Shape
+{
+
+public:
+    double area() const
+    {
+        return 0.5 * width * height;
+    }
+};
+
+int main()
+{
+    Shape shape_1;
+    Shape *shape_ref_1 = &shape_1;
+    shape_1.gethei(5.5);
+    shape_1.getwid(6.5);
+    std::cout << shape_1.area() << std::endl;
+
+    Rectangle shape_2;
+    shape_ref_1 = &shape_2;
+    shape_2.gethei(5.5);
+    shape_2.getwid(6.5);
+    std::cout << shape_2.area() << std::endl;
+
+     triangle shape_3;
+     shape_ref_1 = &shape_3;
+     shape_3.gethei(5.5);
+     shape_3.getwid(6.5);
+     std::cout << shape_3.area() << std::endl;
+}

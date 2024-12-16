@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 4;
+
+int main(int argc, const char * argv[]) {
+
+    const char *names[MAX] = {
+        "Zara Ali",
+        "Hina Ali",
+        "Nuha Ali",
+        "Sara Ali",
+    };
+
+    for (int i = 0; i < MAX; i++) {
+        cout << " --- names[i]              = " << names[i] << endl;
+        cout << " --- *names[i]             = " << (*names[i]) << endl;
+        cout << endl;
+        cout << " --- (*names[i] + 1)       = " << (*names[i] + 1) << endl;
+        cout << " --- (char)(*names[i] + 1) = " << (char)(*names[i] + 1) << endl;
+        cout << " ------------------------------------ " << endl << endl << endl << endl;
+    }
+    return 0;
+}
+// 输出
+ --- names[i]              = Zara Ali
+ --- *names[i]             = Z
+
+ --- (*names[i] + 1)       = 91
+ --- (char)(*names[i] + 1) = [
+ ------------------------------------
+
+
+
+ --- names[i]              = Hina Ali
+ --- *names[i]             = H
+
+ --- (*names[i] + 1)       = 73
+ --- (char)(*names[i] + 1) = I
+ ------------------------------------
+
+
+
+ --- names[i]              = Nuha Ali
+ --- *names[i]             = N
+
+ --- (*names[i] + 1)       = 79
+ --- (char)(*names[i] + 1) = O
+ ------------------------------------
+
+
+
+ --- names[i]              = Sara Ali
+ --- *names[i]             = S
+
+ --- (*names[i] + 1)       = 84
+ --- (char)(*names[i] + 1) = T
+ ------------------------------------
+
+   cout 的行为在处理不同类型的指针时是有所区别的。让我们逐一分析 cout 如何处理各种指针类型，包括字符指针、整型指针和浮点型指针。
+   对于 const char* 类型的指针，cout 会将其视为字符串，并从该指针开始输出字符，直到遇到空字符（'\0'）。这就是为什么你看到 names[i] 输出的是整个字符串，而不是地址。
+   对于其他类型的指针（如 int* 或 float*），cout 会输出指针的地址，而不是指针所指向的值。这是因为 cout 没有定义如何处理其他类型的指针的内容。
+   同样，对于浮点型指针，cout 也会输出指针的地址，而不是指针所指向的值.
