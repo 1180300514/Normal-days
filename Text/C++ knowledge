@@ -33,3 +33,23 @@ C++中, 虚函数可以为private, 并且可以被子类覆盖（因为虚函数
 但用 "\n" 不会刷新，它只会换行，盏内数据没有变化。但一般情况，二者的这点区别是很小的，在大的程序中可能会用到。建议用 endl 来换行。
 2、endl 除了写 '\n' 进外，还调用 flush 函数，刷新缓冲区，把缓冲区里的数据写入文件或屏幕.考虑效率就用 '\n'。
 3、cout *lt;< endl; 除了往输出流中插入一个 '\n' 还有刷新输出流的作用。
+
+cout 流速度较慢，如果速度过慢可以用 <stdio.h> 库中的 printf() 格式化输出函数，不需要 using namespace std;。
+
+它的格式为：
+int __cdecl printf(const char * __restrict__ _Format,...);
+程序实例：
+#include <stdio.h>
+int main()
+{
+    printf("Hello World!\n");
+    return 0;
+}
+
+1、.cpp 文件和 .h 文件的区别：
+cpp文件用于存放类的定义 definition，h 文件用于存放类的声明 declaration。
+在头文件中声明了一个函数或者类，需要定义或者使用这个函数或者类时，需要在 cpp 文件中 include 这个头文件
+
+2、include 头文件时 <> 和 "" 的区别：
+<>：会先去系统目录中找头文件，如果没有找到再去当前目录下寻找，像是标准的头文件，如 stdio.h，stdlib.h 使用这个方法。
+""：会先在当前目录下寻找，如果找不到再去系统目录下寻找，适用于自己定义的头文件
