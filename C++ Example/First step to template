@@ -1,0 +1,27 @@
+#include <variant>
+#include <iostream>
+#include <string>
+#include <functional>
+#include <vector>
+
+template <typename T, typename Variant, typename Callback> 
+void wrapper (Variant & variant, Callback & callback){
+    callback(std::get<T>(variant));
+};
+
+template<typename... Ts, typename Callback>
+void visit(std::variant<Ts...>& variant, Callback&& callback){
+    using Variant = std::variant<Ts...>;
+    constexpr static std::array table = {&wrapper<Ts, Variant, Callback>...};
+    table[variant.index()](variant,callback);
+}
+int main(){
+    auto callback = [](auto& value){std::cout << value << std::endl;};
+    std::variant<int, float, std::string> variant = 42;
+    visit(variant,callback);
+    variant = 3.14f;
+    visit(variant, callback);
+    variant = "Hello, World!";
+    visit(variant, callback);
+    return 0;
+}
